@@ -1,0 +1,7 @@
+<Image><ImageHere></Image> Determine if there is any abormal activity in the image such as running or moving to a wrong direction.
+<Image><ImageHere></Image> Describe the people in the image.
+<Image><ImageHere></Image> Is there any anomaly in the image?
+<Image><ImageHere></Image> Describe this image in detail.
+<Image><ImageHere></Image> Take a look at this image and describe what you notice.
+<Image><ImageHere></Image> Please provide a detailed description of the picture.
+<Image><ImageHere></Image> Could you describe the contents of this image for me?

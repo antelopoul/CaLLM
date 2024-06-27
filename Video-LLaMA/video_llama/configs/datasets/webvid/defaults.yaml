@@ -1,0 +1,6 @@
+datasets:
+  webvid:
+    data_type: video
+    build_info:
+      anno_dir: video_llama/datasets/webvid-dataset/10M/train/
+      videos_dir: video_llama/datasets/webvid-dataset/10M/train/

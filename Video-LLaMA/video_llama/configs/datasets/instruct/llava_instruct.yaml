@@ -1,0 +1,6 @@
+datasets:
+  llava_instruct:
+    data_type: image
+    build_info:
+      anno_dir: /video_llama/datasets/LLaVA-CC3M-Pretrain-595K/chat.json
+      videos_dir: /video_llama/datasets/LLaVA-CC3M-Pretrain-595K/images/

@@ -1,0 +1,5 @@
+datasets:
+  avenue01:
+    data_type: images
+    build_info:
+      storage: video_llama/datasets/avenue01/01

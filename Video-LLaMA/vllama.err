@@ -1,0 +1,2892 @@
+13:4: not a valid test operator: (
+13:4: not a valid test operator: 535.161.08
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: libtorch_cuda_cu.so: cannot open shared object file: No such file or directory
+  warn(f"Failed to load image Python extension: {e}")
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_functional_video.py:6: UserWarning: The 'torchvision.transforms._functional_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms.functional' module instead.
+  warnings.warn(
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_transforms_video.py:25: UserWarning: The 'torchvision.transforms._transforms_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms' module instead.
+  warnings.warn(
+2024-06-12 03:39:16,039 [INFO] 
+=====  Running Parameters    =====
+2024-06-12 03:39:16,039 [INFO] {
+    "amp": true,
+    "batch_size_eval": 2,
+    "batch_size_train": 2,
+    "device": "cuda",
+    "dist_backend": "nccl",
+    "dist_url": "env://",
+    "distributed": true,
+    "evaluate": false,
+    "gpu": 0,
+    "init_lr": 3e-05,
+    "iters_per_epoch": 1000,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_epoch": 3,
+    "min_lr": 1e-05,
+    "num_workers": 4,
+    "output_dir": "output/videollama_stage2_finetune",
+    "rank": 0,
+    "resume_ckpt_path": null,
+    "seed": 42,
+    "task": "video_text_pretrain",
+    "train_splits": [
+        "train"
+    ],
+    "warmup_lr": 1e-06,
+    "warmup_steps": 1000,
+    "weight_decay": 0.05,
+    "world_size": 1
+}
+2024-06-12 03:39:16,039 [INFO] 
+======  Dataset Attributes  ======
+2024-06-12 03:39:16,040 [INFO] 
+======== avenue01 =======
+2024-06-12 03:39:16,040 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue01"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-12 03:39:16,040 [INFO] 
+======== avenue02 =======
+2024-06-12 03:39:16,040 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue02"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-12 03:39:16,040 [INFO] 
+======== cc_sbu_align =======
+2024-06-12 03:39:16,040 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/cc_sbu_align/cc_sbu/cc_sbu_align"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-12 03:39:16,040 [INFO] 
+======== llava_instruct =======
+2024-06-12 03:39:16,041 [INFO] {
+    "build_info": {
+        "anno_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/chat.json",
+        "videos_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/images"
+    },
+    "data_type": "images",
+    "model_type": "llama_v2",
+    "num_video_query_token": 32,
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "tokenizer_name": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-12 03:39:16,041 [INFO] 
+======  Model Attributes  ======
+2024-06-12 03:39:16,041 [INFO] {
+    "arch": "video_llama",
+    "ckpt": "ckpt/Video-LLaMA-2-7B-Finetuned/VL_LLaMA_2_7B_Finetuned.pth",
+    "drop_path_rate": 0,
+    "end_sym": "###",
+    "equip_audio_branch": false,
+    "freeze_qformer": true,
+    "freeze_vit": true,
+    "frozen_audio_Qformer": true,
+    "frozen_llama_proj": false,
+    "frozen_video_Qformer": false,
+    "fusion_head_layers": 2,
+    "fusion_header_type": "seqTransf",
+    "image_size": 224,
+    "imagebind_ckpt_path": "ckpt/Video-LLaMA-2-7B-Finetuned/imagebind_huge.pth",
+    "llama_model": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "max_frame_pos": 32,
+    "max_txt_len": 320,
+    "model_type": "pretrain_vicuna",
+    "num_query_token": 32,
+    "prompt": "",
+    "prompt_path": "prompts/alignment_image.txt",
+    "prompt_template": "###Human: {} ###Assistant: ",
+    "use_grad_checkpoint": false,
+    "vit_precision": "fp16"
+}
+2024-06-12 03:39:16,041 [INFO] Building datasets...
+2024-06-12 03:39:16,082 [INFO] Building datasets...
+2024-06-12 03:39:16,084 [INFO] Building datasets...
+2024-06-12 03:39:16,092 [INFO] Building datasets...
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama.LlamaTokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+2024-06-12 03:39:34,667 [INFO] freeze vision encoder
+2024-06-12 03:39:37,527 [INFO] load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained_flant5xxl.pth
+2024-06-12 03:39:37,539 [INFO] freeze Qformer
+2024-06-12 03:39:37,539 [INFO] Loading Q-Former Done
+2024-06-12 03:39:37,539 [INFO] Loading LLAMA Tokenizer
+2024-06-12 03:39:37,765 [INFO] Loading LLAMA Model
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.62s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.48s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.65s/it]
+2024-06-12 03:39:43,170 [INFO] Loading LLAMA Done
+2024-06-12 03:39:43,170 [INFO] Loading LLAMA proj
+2024-06-12 03:39:43,185 [INFO] LLAMA proj is not frozen
+2024-06-12 03:39:43,185 [INFO] Loading llama_proj Done
+2024-06-12 03:39:44,339 [INFO] video_Qformer is not frozen
+2024-06-12 03:39:44,565 [INFO] Start training
+2024-06-12 03:39:49,152 [INFO] dataset_ratios not specified, datasets will be concatenated (map-style datasets) or chained (webdataset.DataPipeline).
+2024-06-12 03:39:49,152 [INFO] Loaded 601464 records for train split from the dataset.
+2024-06-12 03:39:49,165 [INFO] number of trainable parameters: 22104064
+2024-06-12 03:39:49,166 [INFO] Start training epoch 0, 1000 iters per inner epoch.
+Traceback (most recent call last):
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 107, in <module>
+    main()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 103, in main
+    runner.train()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 377, in train
+    train_stats = self.train_epoch(cur_epoch)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 437, in train_epoch
+    return self.task.train_epoch(
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 114, in train_epoch
+    return self._train_inner_loop(
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 219, in _train_inner_loop
+    loss = self.train_step(model=model, samples=samples)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 68, in train_step
+    loss = model(samples)["loss"]
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1523, in forward
+    else self._run_ddp_forward(*inputs, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1359, in _run_ddp_forward
+    return self.module(*inputs, **kwargs)  # type: ignore[index]
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/video_llama.py", line 529, in forward
+    outputs = self.llama_model(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 676, in forward
+    outputs = self.model(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 565, in forward
+    layer_outputs = decoder_layer(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 288, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 140, in forward
+    return self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 116, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 86.00 MiB. GPU 0 has a total capacity of 31.74 GiB of which 7.88 MiB is free. Including non-PyTorch memory, this process has 31.73 GiB memory in use. Of the allocated memory 30.54 GiB is allocated by PyTorch, and 495.99 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2024-06-12 03:40:08,196] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 3168551) of binary: /opt/conda/envs/conda_container_env/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/envs/conda_container_env/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-06-12_03:40:08
+  host      : nv-ai-03.srv.aau.dk
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 3168551)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+srun: error: nv-ai-03: task 0: Exited with exit code 1
+13:4: not a valid test operator: (
+13:4: not a valid test operator: 535.161.08
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: libtorch_cuda_cu.so: cannot open shared object file: No such file or directory
+  warn(f"Failed to load image Python extension: {e}")
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_functional_video.py:6: UserWarning: The 'torchvision.transforms._functional_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms.functional' module instead.
+  warnings.warn(
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_transforms_video.py:25: UserWarning: The 'torchvision.transforms._transforms_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms' module instead.
+  warnings.warn(
+2024-06-12 09:31:06,288 [INFO] 
+=====  Running Parameters    =====
+2024-06-12 09:31:06,289 [INFO] {
+    "amp": true,
+    "batch_size_eval": 2,
+    "batch_size_train": 2,
+    "device": "cuda",
+    "dist_backend": "nccl",
+    "dist_url": "env://",
+    "distributed": true,
+    "evaluate": false,
+    "gpu": 0,
+    "init_lr": 3e-05,
+    "iters_per_epoch": 1000,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_epoch": 3,
+    "min_lr": 1e-05,
+    "num_workers": 4,
+    "output_dir": "output/videollama_stage2_finetune",
+    "rank": 0,
+    "resume_ckpt_path": null,
+    "seed": 42,
+    "task": "video_text_pretrain",
+    "train_splits": [
+        "train"
+    ],
+    "warmup_lr": 1e-06,
+    "warmup_steps": 1000,
+    "weight_decay": 0.05,
+    "world_size": 1
+}
+2024-06-12 09:31:06,289 [INFO] 
+======  Dataset Attributes  ======
+2024-06-12 09:31:06,289 [INFO] 
+======== avenue01 =======
+2024-06-12 09:31:06,289 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue01"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-12 09:31:06,289 [INFO] 
+======== avenue02 =======
+2024-06-12 09:31:06,290 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue02"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-12 09:31:06,290 [INFO] 
+======== cc_sbu_align =======
+2024-06-12 09:31:06,290 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/cc_sbu_align/cc_sbu/cc_sbu_align"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-12 09:31:06,290 [INFO] 
+======== llava_instruct =======
+2024-06-12 09:31:06,290 [INFO] {
+    "build_info": {
+        "anno_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/chat.json",
+        "videos_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/images"
+    },
+    "data_type": "images",
+    "model_type": "llama_v2",
+    "num_video_query_token": 32,
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "tokenizer_name": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-12 09:31:06,290 [INFO] 
+======  Model Attributes  ======
+2024-06-12 09:31:06,290 [INFO] {
+    "arch": "video_llama",
+    "ckpt": "ckpt/Video-LLaMA-2-7B-Finetuned/VL_LLaMA_2_7B_Finetuned.pth",
+    "drop_path_rate": 0,
+    "end_sym": "###",
+    "equip_audio_branch": false,
+    "freeze_qformer": true,
+    "freeze_vit": true,
+    "frozen_audio_Qformer": true,
+    "frozen_llama_proj": false,
+    "frozen_video_Qformer": false,
+    "fusion_head_layers": 2,
+    "fusion_header_type": "seqTransf",
+    "image_size": 224,
+    "imagebind_ckpt_path": "ckpt/Video-LLaMA-2-7B-Finetuned/imagebind_huge.pth",
+    "llama_model": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "max_frame_pos": 32,
+    "max_txt_len": 320,
+    "model_type": "pretrain_vicuna",
+    "num_query_token": 32,
+    "prompt": "",
+    "prompt_path": "prompts/alignment_image.txt",
+    "prompt_template": "###Human: {} ###Assistant: ",
+    "use_grad_checkpoint": false,
+    "vit_precision": "fp16"
+}
+2024-06-12 09:31:06,291 [INFO] Building datasets...
+2024-06-12 09:31:06,312 [INFO] Building datasets...
+2024-06-12 09:31:06,331 [INFO] Building datasets...
+2024-06-12 09:31:06,382 [INFO] Building datasets...
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama.LlamaTokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+2024-06-12 09:31:34,773 [INFO] freeze vision encoder
+2024-06-12 09:31:44,912 [INFO] load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained_flant5xxl.pth
+2024-06-12 09:31:44,924 [INFO] freeze Qformer
+2024-06-12 09:31:44,924 [INFO] Loading Q-Former Done
+2024-06-12 09:31:44,924 [INFO] Loading LLAMA Tokenizer
+2024-06-12 09:31:45,146 [INFO] Loading LLAMA Model
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [01:10<01:10, 70.01s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:31<00:00, 41.67s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:31<00:00, 45.92s/it]
+2024-06-12 09:33:17,167 [INFO] Loading LLAMA Done
+2024-06-12 09:33:17,167 [INFO] Loading LLAMA proj
+2024-06-12 09:33:17,188 [INFO] LLAMA proj is not frozen
+2024-06-12 09:33:17,188 [INFO] Loading llama_proj Done
+2024-06-12 09:33:18,199 [INFO] video_Qformer is not frozen
+2024-06-12 09:33:22,023 [INFO] Start training
+2024-06-12 09:33:27,292 [INFO] dataset_ratios not specified, datasets will be concatenated (map-style datasets) or chained (webdataset.DataPipeline).
+2024-06-12 09:33:27,292 [INFO] Loaded 601464 records for train split from the dataset.
+2024-06-12 09:33:27,305 [INFO] number of trainable parameters: 22104064
+2024-06-12 09:33:27,306 [INFO] Start training epoch 0, 1000 iters per inner epoch.
+2024-06-12 09:36:12,706 [INFO] Averaged stats: lr: 0.0000  loss: 1.2013
+2024-06-12 09:36:12,714 [INFO] No validation splits found.
+2024-06-12 09:36:12,734 [INFO] Saving checkpoint at epoch 0 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240612093/checkpoint_0.pth.
+2024-06-12 09:36:12,954 [INFO] Start training
+2024-06-12 09:36:12,975 [INFO] Start training epoch 1, 1000 iters per inner epoch.
+2024-06-12 09:38:49,465 [INFO] Averaged stats: lr: 0.0000  loss: 0.7962
+2024-06-12 09:38:49,473 [INFO] No validation splits found.
+2024-06-12 09:38:49,493 [INFO] Saving checkpoint at epoch 1 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240612093/checkpoint_1.pth.
+2024-06-12 09:38:50,090 [INFO] Start training
+2024-06-12 09:38:50,111 [INFO] Start training epoch 2, 1000 iters per inner epoch.
+2024-06-12 09:41:32,560 [INFO] Averaged stats: lr: 0.0000  loss: 0.8194
+2024-06-12 09:41:32,568 [INFO] No validation splits found.
+2024-06-12 09:41:32,589 [INFO] Saving checkpoint at epoch 2 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240612093/checkpoint_2.pth.
+2024-06-12 09:41:32,806 [INFO] No validation splits found.
+2024-06-12 09:41:32,806 [INFO] Training time 0:08:10
+WARNING: group: unknown groupid 231401
+13:4: not a valid test operator: (
+13:4: not a valid test operator: 535.171.04
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 298349.0 ON a768-l40-02 CANCELLED AT 2024-06-14T15:12:00 ***
+slurmstepd: error: *** JOB 298349 ON a768-l40-02 CANCELLED AT 2024-06-14T15:12:00 ***
+WARNING: group: unknown groupid 231401
+13:4: not a valid test operator: (
+13:4: not a valid test operator: 535.171.04
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: libtorch_cuda_cu.so: cannot open shared object file: No such file or directory
+  warn(f"Failed to load image Python extension: {e}")
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_functional_video.py:6: UserWarning: The 'torchvision.transforms._functional_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms.functional' module instead.
+  warnings.warn(
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_transforms_video.py:25: UserWarning: The 'torchvision.transforms._transforms_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms' module instead.
+  warnings.warn(
+2024-06-14 15:13:22,916 [INFO] 
+=====  Running Parameters    =====
+2024-06-14 15:13:22,916 [INFO] {
+    "amp": true,
+    "batch_size_eval": 4,
+    "batch_size_train": 4,
+    "device": "cuda",
+    "dist_backend": "nccl",
+    "dist_url": "env://",
+    "distributed": true,
+    "evaluate": false,
+    "gpu": 0,
+    "init_lr": 3e-05,
+    "iters_per_epoch": 1000,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_epoch": 10,
+    "min_lr": 1e-05,
+    "num_workers": 4,
+    "output_dir": "output/videollama_stage2_finetune",
+    "rank": 0,
+    "resume_ckpt_path": "output/videollama_stage2_finetune/20240612093/checkpoint_2.pth",
+    "seed": 42,
+    "task": "video_text_pretrain",
+    "train_splits": [
+        "train"
+    ],
+    "warmup_lr": 1e-06,
+    "warmup_steps": 1000,
+    "weight_decay": 0.05,
+    "world_size": 1
+}
+2024-06-14 15:13:22,916 [INFO] 
+======  Dataset Attributes  ======
+2024-06-14 15:13:22,916 [INFO] 
+======== avenue01 =======
+2024-06-14 15:13:22,917 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue01"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:13:22,917 [INFO] 
+======== avenue02 =======
+2024-06-14 15:13:22,917 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue02"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:13:22,917 [INFO] 
+======== cc_sbu_align =======
+2024-06-14 15:13:22,918 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/cc_sbu_align/cc_sbu/cc_sbu_align"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:13:22,918 [INFO] 
+======== llava_instruct =======
+2024-06-14 15:13:22,918 [INFO] {
+    "build_info": {
+        "anno_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/chat.json",
+        "videos_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/images"
+    },
+    "data_type": "images",
+    "model_type": "llama_v2",
+    "num_video_query_token": 32,
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "tokenizer_name": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:13:22,918 [INFO] 
+======  Model Attributes  ======
+2024-06-14 15:13:22,918 [INFO] {
+    "arch": "video_llama",
+    "ckpt": "ckpt/Video-LLaMA-2-7B-Finetuned/VL_LLaMA_2_7B_Finetuned.pth",
+    "drop_path_rate": 0,
+    "end_sym": "###",
+    "equip_audio_branch": false,
+    "freeze_qformer": true,
+    "freeze_vit": true,
+    "frozen_audio_Qformer": true,
+    "frozen_llama_proj": false,
+    "frozen_video_Qformer": false,
+    "fusion_head_layers": 2,
+    "fusion_header_type": "seqTransf",
+    "image_size": 224,
+    "imagebind_ckpt_path": "ckpt/Video-LLaMA-2-7B-Finetuned/imagebind_huge.pth",
+    "llama_model": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "max_frame_pos": 32,
+    "max_txt_len": 320,
+    "model_type": "pretrain_vicuna",
+    "num_query_token": 32,
+    "prompt": "",
+    "prompt_path": "prompts/alignment_image.txt",
+    "prompt_template": "###Human: {} ###Assistant: ",
+    "use_grad_checkpoint": false,
+    "vit_precision": "fp16"
+}
+2024-06-14 15:13:22,919 [INFO] Building datasets...
+2024-06-14 15:13:22,945 [INFO] Building datasets...
+2024-06-14 15:13:22,975 [INFO] Building datasets...
+2024-06-14 15:13:23,029 [INFO] Building datasets...
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama.LlamaTokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+2024-06-14 15:13:46,716 [INFO] freeze vision encoder
+2024-06-14 15:13:57,184 [INFO] load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained_flant5xxl.pth
+2024-06-14 15:13:57,190 [INFO] freeze Qformer
+2024-06-14 15:13:57,190 [INFO] Loading Q-Former Done
+2024-06-14 15:13:57,191 [INFO] Loading LLAMA Tokenizer
+2024-06-14 15:13:57,335 [INFO] Loading LLAMA Model
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [01:13<01:13, 73.55s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:36<00:00, 43.91s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:36<00:00, 48.36s/it]
+2024-06-14 15:15:34,181 [INFO] Loading LLAMA Done
+2024-06-14 15:15:34,181 [INFO] Loading LLAMA proj
+2024-06-14 15:15:34,194 [INFO] LLAMA proj is not frozen
+2024-06-14 15:15:34,194 [INFO] Loading llama_proj Done
+2024-06-14 15:15:34,918 [INFO] video_Qformer is not frozen
+Traceback (most recent call last):
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 107, in <module>
+    main()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 103, in main
+    runner.train()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 371, in train
+    self._load_checkpoint(self.resume_ckpt_path)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 633, in _load_checkpoint
+    raise RuntimeError("checkpoint url or path is invalid")
+RuntimeError: checkpoint url or path is invalid
+[2024-06-14 15:15:49,459] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 1764789) of binary: /opt/conda/envs/conda_container_env/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/envs/conda_container_env/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-06-14_15:15:49
+  host      : a768-l40-02.srv.aau.dk
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1764789)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+srun: error: a768-l40-02: task 0: Exited with exit code 1
+WARNING: group: unknown groupid 231401
+13:4: not a valid test operator: (
+13:4: not a valid test operator: 535.171.04
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: libtorch_cuda_cu.so: cannot open shared object file: No such file or directory
+  warn(f"Failed to load image Python extension: {e}")
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_functional_video.py:6: UserWarning: The 'torchvision.transforms._functional_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms.functional' module instead.
+  warnings.warn(
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_transforms_video.py:25: UserWarning: The 'torchvision.transforms._transforms_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms' module instead.
+  warnings.warn(
+2024-06-14 15:18:56,175 [INFO] 
+=====  Running Parameters    =====
+2024-06-14 15:18:56,175 [INFO] {
+    "amp": true,
+    "batch_size_eval": 4,
+    "batch_size_train": 4,
+    "device": "cuda",
+    "dist_backend": "nccl",
+    "dist_url": "env://",
+    "distributed": true,
+    "evaluate": false,
+    "gpu": 0,
+    "init_lr": 3e-05,
+    "iters_per_epoch": 1000,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_epoch": 10,
+    "min_lr": 1e-05,
+    "num_workers": 4,
+    "output_dir": "output/videollama_stage2_finetune",
+    "rank": 0,
+    "resume_ckpt_path": "video_llama/output/videollama_stage2_finetune/20240612093/checkpoint_2.pth",
+    "seed": 42,
+    "task": "video_text_pretrain",
+    "train_splits": [
+        "train"
+    ],
+    "warmup_lr": 1e-06,
+    "warmup_steps": 1000,
+    "weight_decay": 0.05,
+    "world_size": 1
+}
+2024-06-14 15:18:56,175 [INFO] 
+======  Dataset Attributes  ======
+2024-06-14 15:18:56,175 [INFO] 
+======== avenue01 =======
+2024-06-14 15:18:56,176 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue01"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:18:56,176 [INFO] 
+======== avenue02 =======
+2024-06-14 15:18:56,176 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue02"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:18:56,176 [INFO] 
+======== cc_sbu_align =======
+2024-06-14 15:18:56,176 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/cc_sbu_align/cc_sbu/cc_sbu_align"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:18:56,176 [INFO] 
+======== llava_instruct =======
+2024-06-14 15:18:56,177 [INFO] {
+    "build_info": {
+        "anno_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/chat.json",
+        "videos_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/images"
+    },
+    "data_type": "images",
+    "model_type": "llama_v2",
+    "num_video_query_token": 32,
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "tokenizer_name": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:18:56,177 [INFO] 
+======  Model Attributes  ======
+2024-06-14 15:18:56,177 [INFO] {
+    "arch": "video_llama",
+    "ckpt": "ckpt/Video-LLaMA-2-7B-Finetuned/VL_LLaMA_2_7B_Finetuned.pth",
+    "drop_path_rate": 0,
+    "end_sym": "###",
+    "equip_audio_branch": false,
+    "freeze_qformer": true,
+    "freeze_vit": true,
+    "frozen_audio_Qformer": true,
+    "frozen_llama_proj": false,
+    "frozen_video_Qformer": false,
+    "fusion_head_layers": 2,
+    "fusion_header_type": "seqTransf",
+    "image_size": 224,
+    "imagebind_ckpt_path": "ckpt/Video-LLaMA-2-7B-Finetuned/imagebind_huge.pth",
+    "llama_model": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "max_frame_pos": 32,
+    "max_txt_len": 320,
+    "model_type": "pretrain_vicuna",
+    "num_query_token": 32,
+    "prompt": "",
+    "prompt_path": "prompts/alignment_image.txt",
+    "prompt_template": "###Human: {} ###Assistant: ",
+    "use_grad_checkpoint": false,
+    "vit_precision": "fp16"
+}
+2024-06-14 15:18:56,177 [INFO] Building datasets...
+2024-06-14 15:18:56,180 [INFO] Building datasets...
+2024-06-14 15:18:56,181 [INFO] Building datasets...
+2024-06-14 15:18:56,188 [INFO] Building datasets...
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama.LlamaTokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+2024-06-14 15:19:07,335 [INFO] freeze vision encoder
+2024-06-14 15:19:09,148 [INFO] load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained_flant5xxl.pth
+2024-06-14 15:19:09,156 [INFO] freeze Qformer
+2024-06-14 15:19:09,156 [INFO] Loading Q-Former Done
+2024-06-14 15:19:09,156 [INFO] Loading LLAMA Tokenizer
+2024-06-14 15:19:09,297 [INFO] Loading LLAMA Model
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.68s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.79s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.92s/it]
+2024-06-14 15:19:13,200 [INFO] Loading LLAMA Done
+2024-06-14 15:19:13,200 [INFO] Loading LLAMA proj
+2024-06-14 15:19:13,210 [INFO] LLAMA proj is not frozen
+2024-06-14 15:19:13,210 [INFO] Loading llama_proj Done
+2024-06-14 15:19:13,908 [INFO] video_Qformer is not frozen
+Traceback (most recent call last):
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 107, in <module>
+    main()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 103, in main
+    runner.train()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 371, in train
+    self._load_checkpoint(self.resume_ckpt_path)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 631, in _load_checkpoint
+    checkpoint = torch.load(url_or_filename, map_location=self.device, strict=False)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/serialization.py", line 1026, in load
+    return _load(opened_zipfile,
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/serialization.py", line 1436, in _load
+    unpickler = UnpicklerWrapper(data_file, **pickle_load_args)
+TypeError: 'strict' is an invalid keyword argument for Unpickler()
+[2024-06-14 15:19:20,756] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 1765767) of binary: /opt/conda/envs/conda_container_env/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/envs/conda_container_env/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-06-14_15:19:20
+  host      : a768-l40-02.srv.aau.dk
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1765767)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+srun: error: a768-l40-02: task 0: Exited with exit code 1
+13:4: not a valid test operator: (
+13:4: not a valid test operator: 535.171.04
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: libtorch_cuda_cu.so: cannot open shared object file: No such file or directory
+  warn(f"Failed to load image Python extension: {e}")
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_functional_video.py:6: UserWarning: The 'torchvision.transforms._functional_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms.functional' module instead.
+  warnings.warn(
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_transforms_video.py:25: UserWarning: The 'torchvision.transforms._transforms_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms' module instead.
+  warnings.warn(
+2024-06-14 15:25:55,173 [INFO] 
+=====  Running Parameters    =====
+2024-06-14 15:25:55,174 [INFO] {
+    "amp": true,
+    "batch_size_eval": 4,
+    "batch_size_train": 4,
+    "device": "cuda",
+    "dist_backend": "nccl",
+    "dist_url": "env://",
+    "distributed": true,
+    "evaluate": false,
+    "gpu": 0,
+    "init_lr": 3e-05,
+    "iters_per_epoch": 1000,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_epoch": 10,
+    "min_lr": 1e-05,
+    "num_workers": 4,
+    "output_dir": "output/videollama_stage2_finetune",
+    "rank": 0,
+    "resume_ckpt_path": null,
+    "seed": 42,
+    "task": "video_text_pretrain",
+    "train_splits": [
+        "train"
+    ],
+    "warmup_lr": 1e-06,
+    "warmup_steps": 1000,
+    "weight_decay": 0.05,
+    "world_size": 1
+}
+2024-06-14 15:25:55,174 [INFO] 
+======  Dataset Attributes  ======
+2024-06-14 15:25:55,174 [INFO] 
+======== avenue01 =======
+2024-06-14 15:25:55,174 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue01"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:25:55,175 [INFO] 
+======== avenue02 =======
+2024-06-14 15:25:55,175 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue02"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:25:55,175 [INFO] 
+======== cc_sbu_align =======
+2024-06-14 15:25:55,175 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/cc_sbu_align/cc_sbu/cc_sbu_align"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:25:55,175 [INFO] 
+======== llava_instruct =======
+2024-06-14 15:25:55,176 [INFO] {
+    "build_info": {
+        "anno_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/chat.json",
+        "videos_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/images"
+    },
+    "data_type": "images",
+    "model_type": "llama_v2",
+    "num_video_query_token": 32,
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "tokenizer_name": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-14 15:25:55,176 [INFO] 
+======  Model Attributes  ======
+2024-06-14 15:25:55,176 [INFO] {
+    "arch": "video_llama",
+    "ckpt": "ckpt/Video-LLaMA-2-7B-Finetuned/VL_LLaMA_2_7B_Finetuned.pth",
+    "drop_path_rate": 0,
+    "end_sym": "###",
+    "equip_audio_branch": false,
+    "freeze_qformer": true,
+    "freeze_vit": true,
+    "frozen_audio_Qformer": true,
+    "frozen_llama_proj": false,
+    "frozen_video_Qformer": false,
+    "fusion_head_layers": 2,
+    "fusion_header_type": "seqTransf",
+    "image_size": 224,
+    "imagebind_ckpt_path": "ckpt/Video-LLaMA-2-7B-Finetuned/imagebind_huge.pth",
+    "llama_model": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "max_frame_pos": 32,
+    "max_txt_len": 320,
+    "model_type": "pretrain_vicuna",
+    "num_query_token": 32,
+    "prompt": "",
+    "prompt_path": "prompts/alignment_image.txt",
+    "prompt_template": "###Human: {} ###Assistant: ",
+    "use_grad_checkpoint": false,
+    "vit_precision": "fp16"
+}
+2024-06-14 15:25:55,176 [INFO] Building datasets...
+2024-06-14 15:25:55,178 [INFO] Building datasets...
+2024-06-14 15:25:55,179 [INFO] Building datasets...
+2024-06-14 15:25:55,186 [INFO] Building datasets...
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama.LlamaTokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+2024-06-14 15:26:06,076 [INFO] freeze vision encoder
+2024-06-14 15:26:08,083 [INFO] load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained_flant5xxl.pth
+2024-06-14 15:26:08,090 [INFO] freeze Qformer
+2024-06-14 15:26:08,090 [INFO] Loading Q-Former Done
+2024-06-14 15:26:08,090 [INFO] Loading LLAMA Tokenizer
+2024-06-14 15:26:08,229 [INFO] Loading LLAMA Model
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.62s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.75s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.88s/it]
+2024-06-14 15:26:12,057 [INFO] Loading LLAMA Done
+2024-06-14 15:26:12,057 [INFO] Loading LLAMA proj
+2024-06-14 15:26:12,068 [INFO] LLAMA proj is not frozen
+2024-06-14 15:26:12,068 [INFO] Loading llama_proj Done
+2024-06-14 15:26:12,770 [INFO] video_Qformer is not frozen
+2024-06-14 15:26:12,851 [INFO] Start training
+2024-06-14 15:26:13,984 [INFO] dataset_ratios not specified, datasets will be concatenated (map-style datasets) or chained (webdataset.DataPipeline).
+2024-06-14 15:26:13,984 [INFO] Loaded 601464 records for train split from the dataset.
+2024-06-14 15:26:13,993 [INFO] number of trainable parameters: 22104064
+2024-06-14 15:26:13,994 [INFO] Start training epoch 0, 1000 iters per inner epoch.
+2024-06-14 15:29:17,159 [INFO] Averaged stats: lr: 0.0000  loss: 1.1575
+2024-06-14 15:29:17,166 [INFO] No validation splits found.
+2024-06-14 15:29:17,185 [INFO] Saving checkpoint at epoch 0 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240614152/checkpoint_0.pth.
+2024-06-14 15:29:17,354 [INFO] Start training
+2024-06-14 15:29:17,369 [INFO] Start training epoch 1, 1000 iters per inner epoch.
+2024-06-14 15:32:17,332 [INFO] Averaged stats: lr: 0.0000  loss: 0.8107
+2024-06-14 15:32:17,340 [INFO] No validation splits found.
+2024-06-14 15:32:17,358 [INFO] Saving checkpoint at epoch 1 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240614152/checkpoint_1.pth.
+2024-06-14 15:32:17,544 [INFO] Start training
+2024-06-14 15:32:17,559 [INFO] Start training epoch 2, 1000 iters per inner epoch.
+2024-06-14 15:35:21,661 [INFO] Averaged stats: lr: 0.0000  loss: 0.8290
+2024-06-14 15:35:21,667 [INFO] No validation splits found.
+2024-06-14 15:35:21,686 [INFO] Saving checkpoint at epoch 2 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240614152/checkpoint_2.pth.
+2024-06-14 15:35:21,854 [INFO] Start training
+2024-06-14 15:35:21,868 [INFO] Start training epoch 3, 1000 iters per inner epoch.
+2024-06-14 15:38:24,851 [INFO] Averaged stats: lr: 0.0000  loss: 0.7787
+2024-06-14 15:38:24,875 [INFO] No validation splits found.
+2024-06-14 15:38:24,894 [INFO] Saving checkpoint at epoch 3 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240614152/checkpoint_3.pth.
+2024-06-14 15:38:25,060 [INFO] Start training
+2024-06-14 15:38:25,075 [INFO] Start training epoch 4, 1000 iters per inner epoch.
+2024-06-14 15:41:29,641 [INFO] Averaged stats: lr: 0.0000  loss: 0.8489
+2024-06-14 15:41:29,704 [INFO] No validation splits found.
+2024-06-14 15:41:29,723 [INFO] Saving checkpoint at epoch 4 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240614152/checkpoint_4.pth.
+2024-06-14 15:41:30,087 [INFO] Start training
+2024-06-14 15:41:30,102 [INFO] Start training epoch 5, 1000 iters per inner epoch.
+2024-06-14 15:44:33,072 [INFO] Averaged stats: lr: 0.0000  loss: 0.7759
+2024-06-14 15:44:33,078 [INFO] No validation splits found.
+2024-06-14 15:44:33,098 [INFO] Saving checkpoint at epoch 5 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240614152/checkpoint_5.pth.
+2024-06-14 15:44:33,284 [INFO] Start training
+2024-06-14 15:44:33,299 [INFO] Start training epoch 6, 1000 iters per inner epoch.
+2024-06-14 15:47:33,542 [INFO] Averaged stats: lr: 0.0000  loss: 0.7595
+2024-06-14 15:47:33,568 [INFO] No validation splits found.
+2024-06-14 15:47:33,583 [INFO] Saving checkpoint at epoch 6 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240614152/checkpoint_6.pth.
+2024-06-14 15:47:33,866 [INFO] Start training
+2024-06-14 15:47:33,880 [INFO] Start training epoch 7, 1000 iters per inner epoch.
+2024-06-14 15:50:40,289 [INFO] Averaged stats: lr: 0.0000  loss: 0.7878
+2024-06-14 15:50:40,297 [INFO] No validation splits found.
+2024-06-14 15:50:40,316 [INFO] Saving checkpoint at epoch 7 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240614152/checkpoint_7.pth.
+2024-06-14 15:50:40,603 [INFO] Start training
+2024-06-14 15:50:40,618 [INFO] Start training epoch 8, 1000 iters per inner epoch.
+2024-06-14 15:53:42,978 [INFO] Averaged stats: lr: 0.0000  loss: 0.7521
+2024-06-14 15:53:42,984 [INFO] No validation splits found.
+2024-06-14 15:53:43,005 [INFO] Saving checkpoint at epoch 8 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240614152/checkpoint_8.pth.
+2024-06-14 15:53:43,167 [INFO] Start training
+2024-06-14 15:53:43,182 [INFO] Start training epoch 9, 1000 iters per inner epoch.
+2024-06-14 15:56:45,897 [INFO] Averaged stats: lr: 0.0000  loss: 0.7271
+2024-06-14 15:56:45,903 [INFO] No validation splits found.
+2024-06-14 15:56:45,923 [INFO] Saving checkpoint at epoch 9 to /home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/output/videollama_stage2_finetune/20240614152/checkpoint_9.pth.
+2024-06-14 15:56:46,088 [INFO] No validation splits found.
+2024-06-14 15:56:46,088 [INFO] Training time 0:30:33
+srun: Job 298420 step creation temporarily disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation temporarily disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298419 step creation still disabled, retrying (Requested nodes are busy)
+slurmstepd: error: *** JOB 298419 ON nv-ai-04 CANCELLED AT 2024-06-15T09:55:03 DUE TO PREEMPTION ***
+srun: error: Unable to create step for job 298419: Duplicate job id
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 298420 step creation still disabled, retrying (Requested nodes are busy)
+srun: error: Unable to create step for job 298420: Job/step already completing or completed
+srun: Job 298773 step creation temporarily disabled, retrying (Requested nodes are busy)
+slurmstepd: error: *** JOB 298773 ON nv-ai-03 CANCELLED AT 2024-06-16T19:52:28 ***
+srun: error: Unable to create step for job 298773: Job/step already completing or completed
+13:4: not a valid test operator: (
+13:4: not a valid test operator: 535.161.08
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: libtorch_cuda_cu.so: cannot open shared object file: No such file or directory
+  warn(f"Failed to load image Python extension: {e}")
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_functional_video.py:6: UserWarning: The 'torchvision.transforms._functional_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms.functional' module instead.
+  warnings.warn(
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_transforms_video.py:25: UserWarning: The 'torchvision.transforms._transforms_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms' module instead.
+  warnings.warn(
+2024-06-16 19:54:07,842 [INFO] 
+=====  Running Parameters    =====
+2024-06-16 19:54:07,843 [INFO] {
+    "amp": true,
+    "batch_size_eval": 4,
+    "batch_size_train": 4,
+    "device": "cuda",
+    "dist_backend": "nccl",
+    "dist_url": "env://",
+    "distributed": true,
+    "evaluate": false,
+    "gpu": 0,
+    "init_lr": 3e-05,
+    "iters_per_epoch": 1000,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_epoch": 100,
+    "min_lr": 1e-05,
+    "num_workers": 4,
+    "output_dir": "output/videollama_stage2_finetune",
+    "rank": 0,
+    "resume_ckpt_path": null,
+    "seed": 42,
+    "task": "video_text_pretrain",
+    "train_splits": [
+        "train"
+    ],
+    "warmup_lr": 1e-06,
+    "warmup_steps": 1000,
+    "weight_decay": 0.05,
+    "world_size": 1
+}
+2024-06-16 19:54:07,843 [INFO] 
+======  Dataset Attributes  ======
+2024-06-16 19:54:07,843 [INFO] 
+======== avenue01 =======
+2024-06-16 19:54:07,844 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue01"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-16 19:54:07,844 [INFO] 
+======== avenue02 =======
+2024-06-16 19:54:07,844 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue02"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-16 19:54:07,844 [INFO] 
+======== cc_sbu_align =======
+2024-06-16 19:54:07,844 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/cc_sbu_align/cc_sbu/cc_sbu_align"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-16 19:54:07,844 [INFO] 
+======== llava_instruct =======
+2024-06-16 19:54:07,845 [INFO] {
+    "build_info": {
+        "anno_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/chat.json",
+        "videos_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/images"
+    },
+    "data_type": "images",
+    "model_type": "llama_v2",
+    "num_video_query_token": 32,
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "tokenizer_name": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-16 19:54:07,845 [INFO] 
+======  Model Attributes  ======
+2024-06-16 19:54:07,845 [INFO] {
+    "arch": "video_llama",
+    "ckpt": "ckpt/Video-LLaMA-2-7B-Finetuned/VL_LLaMA_2_7B_Finetuned.pth",
+    "drop_path_rate": 0,
+    "end_sym": "###",
+    "equip_audio_branch": false,
+    "freeze_qformer": true,
+    "freeze_vit": true,
+    "frozen_audio_Qformer": true,
+    "frozen_llama_proj": false,
+    "frozen_video_Qformer": false,
+    "fusion_head_layers": 2,
+    "fusion_header_type": "seqTransf",
+    "image_size": 224,
+    "imagebind_ckpt_path": "ckpt/Video-LLaMA-2-7B-Finetuned/imagebind_huge.pth",
+    "llama_model": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "max_frame_pos": 32,
+    "max_txt_len": 320,
+    "model_type": "pretrain_vicuna",
+    "num_query_token": 32,
+    "prompt": "",
+    "prompt_path": "prompts/alignment_image.txt",
+    "prompt_template": "###Human: {} ###Assistant: ",
+    "use_grad_checkpoint": false,
+    "vit_precision": "fp16"
+}
+2024-06-16 19:54:07,845 [INFO] Building datasets...
+2024-06-16 19:54:07,868 [INFO] Building datasets...
+2024-06-16 19:54:07,900 [INFO] Building datasets...
+2024-06-16 19:54:07,951 [INFO] Building datasets...
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama.LlamaTokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+2024-06-16 19:54:39,302 [INFO] freeze vision encoder
+2024-06-16 19:54:49,917 [INFO] load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained_flant5xxl.pth
+2024-06-16 19:54:49,930 [INFO] freeze Qformer
+2024-06-16 19:54:49,930 [INFO] Loading Q-Former Done
+2024-06-16 19:54:49,930 [INFO] Loading LLAMA Tokenizer
+2024-06-16 19:54:50,164 [INFO] Loading LLAMA Model
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [01:09<01:09, 69.90s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:33<00:00, 42.47s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:33<00:00, 46.58s/it]
+2024-06-16 19:56:23,575 [INFO] Loading LLAMA Done
+2024-06-16 19:56:23,575 [INFO] Loading LLAMA proj
+2024-06-16 19:56:23,595 [INFO] LLAMA proj is not frozen
+2024-06-16 19:56:23,595 [INFO] Loading llama_proj Done
+2024-06-16 19:56:24,698 [INFO] video_Qformer is not frozen
+2024-06-16 19:56:28,612 [INFO] Start training
+2024-06-16 19:56:39,243 [INFO] dataset_ratios not specified, datasets will be concatenated (map-style datasets) or chained (webdataset.DataPipeline).
+2024-06-16 19:56:39,243 [INFO] Loaded 601464 records for train split from the dataset.
+2024-06-16 19:56:39,257 [INFO] number of trainable parameters: 22104064
+2024-06-16 19:56:39,258 [INFO] Start training epoch 0, 1000 iters per inner epoch.
+Traceback (most recent call last):
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 107, in <module>
+    main()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 103, in main
+    runner.train()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 377, in train
+    train_stats = self.train_epoch(cur_epoch)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 437, in train_epoch
+    return self.task.train_epoch(
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 114, in train_epoch
+    return self._train_inner_loop(
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 219, in _train_inner_loop
+    loss = self.train_step(model=model, samples=samples)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 68, in train_step
+    loss = model(samples)["loss"]
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1523, in forward
+    else self._run_ddp_forward(*inputs, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1359, in _run_ddp_forward
+    return self.module(*inputs, **kwargs)  # type: ignore[index]
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/video_llama.py", line 529, in forward
+    outputs = self.llama_model(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 676, in forward
+    outputs = self.model(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 565, in forward
+    layer_outputs = decoder_layer(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 288, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 140, in forward
+    return self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 116, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 86.00 MiB. GPU 0 has a total capacity of 31.74 GiB of which 59.88 MiB is free. Including non-PyTorch memory, this process has 31.67 GiB memory in use. Of the allocated memory 30.35 GiB is allocated by PyTorch, and 638.52 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2024-06-16 19:56:56,685] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 2847534) of binary: /opt/conda/envs/conda_container_env/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/envs/conda_container_env/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-06-16_19:56:56
+  host      : nv-ai-03.srv.aau.dk
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2847534)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+srun: error: nv-ai-03: task 0: Exited with exit code 1
+srun: Job 299805 step creation temporarily disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 299805 step creation still disabled, retrying (Requested nodes are busy)
+srun: error: Unable to create step for job 299805: Job/step already completing or completed
+13:4: not a valid test operator: (
+13:4: not a valid test operator: 535.171.04
+13:4: not a valid test operator: (
+13:4: not a valid test operator: 535.161.08
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: libtorch_cuda_cu.so: cannot open shared object file: No such file or directory
+  warn(f"Failed to load image Python extension: {e}")
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_functional_video.py:6: UserWarning: The 'torchvision.transforms._functional_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms.functional' module instead.
+  warnings.warn(
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_transforms_video.py:25: UserWarning: The 'torchvision.transforms._transforms_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms' module instead.
+  warnings.warn(
+2024-06-18 00:52:54,024 [INFO] 
+=====  Running Parameters    =====
+2024-06-18 00:52:54,024 [INFO] {
+    "amp": true,
+    "batch_size_eval": 4,
+    "batch_size_train": 4,
+    "device": "cuda",
+    "dist_backend": "nccl",
+    "dist_url": "env://",
+    "distributed": true,
+    "evaluate": false,
+    "gpu": 0,
+    "init_lr": 3e-05,
+    "iters_per_epoch": 1000,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_epoch": 50,
+    "min_lr": 1e-05,
+    "num_workers": 4,
+    "output_dir": "output/videollama_stage2_finetune",
+    "rank": 0,
+    "resume_ckpt_path": null,
+    "seed": 42,
+    "task": "video_text_pretrain",
+    "train_splits": [
+        "train"
+    ],
+    "warmup_lr": 1e-06,
+    "warmup_steps": 1000,
+    "weight_decay": 0.05,
+    "world_size": 1
+}
+2024-06-18 00:52:54,024 [INFO] 
+======  Dataset Attributes  ======
+2024-06-18 00:52:54,025 [INFO] 
+======== avenue01 =======
+2024-06-18 00:52:54,025 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue01"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:52:54,025 [INFO] 
+======== avenue02 =======
+2024-06-18 00:52:54,025 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue02"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:52:54,025 [INFO] 
+======== cc_sbu_align =======
+2024-06-18 00:52:54,025 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/cc_sbu_align/cc_sbu/cc_sbu_align"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:52:54,025 [INFO] 
+======== llava_instruct =======
+2024-06-18 00:52:54,026 [INFO] {
+    "build_info": {
+        "anno_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/chat.json",
+        "videos_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/images"
+    },
+    "data_type": "images",
+    "model_type": "llama_v2",
+    "num_video_query_token": 32,
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "tokenizer_name": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:52:54,026 [INFO] 
+======  Model Attributes  ======
+2024-06-18 00:52:54,026 [INFO] {
+    "arch": "video_llama",
+    "ckpt": "ckpt/Video-LLaMA-2-7B-Finetuned/VL_LLaMA_2_7B_Finetuned.pth",
+    "drop_path_rate": 0,
+    "end_sym": "###",
+    "equip_audio_branch": false,
+    "freeze_qformer": true,
+    "freeze_vit": true,
+    "frozen_audio_Qformer": true,
+    "frozen_llama_proj": false,
+    "frozen_video_Qformer": false,
+    "fusion_head_layers": 2,
+    "fusion_header_type": "seqTransf",
+    "image_size": 224,
+    "imagebind_ckpt_path": "ckpt/Video-LLaMA-2-7B-Finetuned/imagebind_huge.pth",
+    "llama_model": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "max_frame_pos": 32,
+    "max_txt_len": 320,
+    "model_type": "pretrain_vicuna",
+    "num_query_token": 32,
+    "prompt": "",
+    "prompt_path": "prompts/alignment_image.txt",
+    "prompt_template": "###Human: {} ###Assistant: ",
+    "use_grad_checkpoint": false,
+    "vit_precision": "fp16"
+}
+2024-06-18 00:52:54,026 [INFO] Building datasets...
+2024-06-18 00:52:54,049 [INFO] Building datasets...
+2024-06-18 00:52:54,074 [INFO] Building datasets...
+2024-06-18 00:52:54,127 [INFO] Building datasets...
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama.LlamaTokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: libtorch_cuda_cu.so: cannot open shared object file: No such file or directory
+  warn(f"Failed to load image Python extension: {e}")
+2024-06-18 00:53:26,502 [INFO] freeze vision encoder
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_functional_video.py:6: UserWarning: The 'torchvision.transforms._functional_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms.functional' module instead.
+  warnings.warn(
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_transforms_video.py:25: UserWarning: The 'torchvision.transforms._transforms_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms' module instead.
+  warnings.warn(
+2024-06-18 00:53:37,475 [INFO] 
+=====  Running Parameters    =====
+2024-06-18 00:53:37,476 [INFO] {
+    "amp": true,
+    "batch_size_eval": 4,
+    "batch_size_train": 4,
+    "device": "cuda",
+    "dist_backend": "nccl",
+    "dist_url": "env://",
+    "distributed": true,
+    "evaluate": false,
+    "gpu": 0,
+    "init_lr": 3e-05,
+    "iters_per_epoch": 1000,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_epoch": 50,
+    "min_lr": 1e-05,
+    "num_workers": 4,
+    "output_dir": "output/videollama_stage2_finetune",
+    "rank": 0,
+    "resume_ckpt_path": null,
+ load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained_flant5xxl.pth
+    "seed": 42,
+:37,690 [INFO] freeze Qformer
+    "task": "video_text_pretrain",
+ing Q-Former Done
+2024-06-18 00:53:37,690 [INFO] Loading LLAMA Tokenizer
+        "train"
+    ],
+    "warmup_lr": 1e-06,
+    "warmup_steps": 1000,
+    "weight_decay": 0.05,
+    "world_size": 1
+}
+2024-06-18 00:53:37,476 [INFO] 
+======  Dataset Attributes  ======
+2024-06-18 00:53:37,476 [INFO] 
+======== avenue01 =======
+2024-06-18 00:53:37,477 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue01"
+    },
+    "data_type": "images",
+    "text_processor": {
+2024-06-18 00:53:37,923 [INFO] Loading LLAMA Model
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:53:37,477 [INFO] 
+======== avenue02 =======
+2024-06-18 00:53:37,477 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue02"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:53:37,477 [INFO] 
+======== cc_sbu_align =======
+2024-06-18 00:53:37,478 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/cc_sbu_align/cc_sbu/cc_sbu_align"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:53:37,478 [INFO] 
+======== llava_instruct =======
+2024-06-18 00:53:37,478 [INFO] {
+    "build_info": {
+        "anno_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/chat.json",
+        "videos_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/images"
+    },
+    "data_type": "images",
+    "model_type": "llama_v2",
+    "num_video_query_token": 32,
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "tokenizer_name": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:53:37,478 [INFO] 
+======  Model Attributes  ======
+2024-06-18 00:53:37,478 [INFO] {
+    "arch": "video_llama",
+    "ckpt": "ckpt/Video-LLaMA-2-7B-Finetuned/VL_LLaMA_2_7B_Finetuned.pth",
+    "drop_path_rate": 0,
+    "end_sym": "###",
+    "equip_audio_branch": false,
+    "freeze_qformer": true,
+    "freeze_vit": true,
+    "frozen_audio_Qformer": true,
+    "frozen_llama_proj": false,
+    "frozen_video_Qformer": false,
+    "fusion_head_layers": 2,
+    "fusion_header_type": "seqTransf",
+    "image_size": 224,
+    "imagebind_ckpt_path": "ckpt/Video-LLaMA-2-7B-Finetuned/imagebind_huge.pth",
+    "llama_model": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "max_frame_pos": 32,
+    "max_txt_len": 320,
+    "model_type": "pretrain_vicuna",
+    "num_query_token": 32,
+    "prompt": "",
+    "prompt_path": "prompts/alignment_image.txt",
+    "prompt_template": "###Human: {} ###Assistant: ",
+    "use_grad_checkpoint": false,
+    "vit_precision": "fp16"
+}
+2024-06-18 00:53:37,479 [INFO] Building datasets...
+2024-06-18 00:53:37,508 [INFO] Building datasets...
+2024-06-18 00:53:37,603 [INFO] Building datasets...
+2024-06-18 00:53:37,664 [INFO] Building datasets...
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama.LlamaTokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+2024-06-18 00:54:06,834 [INFO] freeze vision encoder
+2024-06-18 00:54:17,455 [INFO] load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained_flant5xxl.pth
+2024-06-18 00:54:17,469 [INFO] freeze Qformer
+2024-06-18 00:54:17,469 [INFO] Loading Q-Former Done
+2024-06-18 00:54:17,469 [INFO] Loading LLAMA Tokenizer
+2024-06-18 00:54:17,809 [INFO] Loading LLAMA Model
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [01:17<01:17, 77.94s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:42<00:00, 46.80s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:42<00:00, 51.47s/it]
+2024-06-18 00:55:21,024 [INFO] Loading LLAMA Done
+2024-06-18 00:55:21,024 [INFO] Loading LLAMA proj
+2024-06-18 00:55:21,042 [INFO] LLAMA proj is not frozen
+2024-06-18 00:55:21,042 [INFO] Loading llama_proj Done
+2024-06-18 00:55:22,292 [INFO] video_Qformer is not frozen
+2024-06-18 00:55:26,279 [INFO] Start training
+2024-06-18 00:55:31,637 [INFO] dataset_ratios not specified, datasets will be concatenated (map-style datasets) or chained (webdataset.DataPipeline).
+2024-06-18 00:55:31,637 [INFO] Loaded 601464 records for train split from the dataset.
+2024-06-18 00:55:31,651 [INFO] number of trainable parameters: 22104064
+2024-06-18 00:55:31,652 [INFO] Start training epoch 0, 1000 iters per inner epoch.
+Traceback (most recent call last):
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 107, in <module>
+    main()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 103, in main
+    runner.train()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 377, in train
+    train_stats = self.train_epoch(cur_epoch)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 437, in train_epoch
+    return self.task.train_epoch(
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 114, in train_epoch
+    return self._train_inner_loop(
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 219, in _train_inner_loop
+    loss = self.train_step(model=model, samples=samples)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 68, in train_step
+    loss = model(samples)["loss"]
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1523, in forward
+    else self._run_ddp_forward(*inputs, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1359, in _run_ddp_forward
+    return self.module(*inputs, **kwargs)  # type: ignore[index]
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/video_llama.py", line 529, in forward
+    outputs = self.llama_model(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 676, in forward
+    outputs = self.model(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 565, in forward
+    layer_outputs = decoder_layer(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 288, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 140, in forward
+    return self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 116, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 86.00 MiB. GPU 0 has a total capacity of 31.74 GiB of which 65.88 MiB is free. Including non-PyTorch memory, this process has 31.67 GiB memory in use. Of the allocated memory 30.35 GiB is allocated by PyTorch, and 634.74 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2024-06-18 00:55:47,978] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 476961) of binary: /opt/conda/envs/conda_container_env/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/envs/conda_container_env/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 803, in run
+srun: error: nv-ai-03: task 0: Exited with exit code 1
+    elastic_launch(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [01:09<01:09, 69.22s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:31<00:00, 41.55s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:31<00:00, 45.70s/it]
+2024-06-18 00:55:49,358 [INFO] Loading LLAMA Done
+[0]:
+06-18 00:55:49,358 [INFO] Loading LLAMA proj
+2024-06-18 00:55:49,388 [INFO] LLAMA proj is not frozen
+  host      : nv-ai-03.srv.aau.dk
+ding llama_proj Done
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 476961)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+2024-06-18 00:55:50,736 [INFO] video_Qformer is not frozen
+2024-06-18 00:55:54,171 [INFO] Start training
+2024-06-18 00:55:57,297 [INFO] dataset_ratios not specified, datasets will be concatenated (map-style datasets) or chained (webdataset.DataPipeline).
+2024-06-18 00:55:57,297 [INFO] Loaded 601464 records for train split from the dataset.
+2024-06-18 00:55:57,308 [INFO] number of trainable parameters: 22104064
+2024-06-18 00:55:57,309 [INFO] Start training epoch 0, 1000 iters per inner epoch.
+Traceback (most recent call last):
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 107, in <module>
+    main()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 103, in main
+    runner.train()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 377, in train
+    train_stats = self.train_epoch(cur_epoch)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 437, in train_epoch
+    return self.task.train_epoch(
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 114, in train_epoch
+    return self._train_inner_loop(
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 219, in _train_inner_loop
+    loss = self.train_step(model=model, samples=samples)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 68, in train_step
+    loss = model(samples)["loss"]
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1523, in forward
+    else self._run_ddp_forward(*inputs, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1359, in _run_ddp_forward
+    return self.module(*inputs, **kwargs)  # type: ignore[index]
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/video_llama.py", line 529, in forward
+    outputs = self.llama_model(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 676, in forward
+    outputs = self.model(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 565, in forward
+    layer_outputs = decoder_layer(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 288, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 140, in forward
+    return self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 116, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 86.00 MiB. GPU 0 has a total capacity of 22.17 GiB of which 80.38 MiB is free. Including non-PyTorch memory, this process has 22.08 GiB memory in use. Of the allocated memory 21.37 GiB is allocated by PyTorch, and 165.98 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2024-06-18 00:56:13,169] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 2435763) of binary: /opt/conda/envs/conda_container_env/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/envs/conda_container_env/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-06-18_00:56:13
+  host      : a512-l4-06.srv.aau.dk
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2435763)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+srun: error: a512-l4-06: task 0: Exited with exit code 1
+13:4: not a valid test operator: (
+13:4: not a valid test operator: 535.171.04
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: libtorch_cuda_cu.so: cannot open shared object file: No such file or directory
+  warn(f"Failed to load image Python extension: {e}")
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_functional_video.py:6: UserWarning: The 'torchvision.transforms._functional_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms.functional' module instead.
+  warnings.warn(
+/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torchvision/transforms/_transforms_video.py:25: UserWarning: The 'torchvision.transforms._transforms_video' module is deprecated since 0.12 and will be removed in 0.14. Please use the 'torchvision.transforms' module instead.
+  warnings.warn(
+2024-06-18 00:57:26,407 [INFO] 
+=====  Running Parameters    =====
+2024-06-18 00:57:26,408 [INFO] {
+    "amp": true,
+    "batch_size_eval": 4,
+    "batch_size_train": 4,
+    "device": "cuda",
+    "dist_backend": "nccl",
+    "dist_url": "env://",
+    "distributed": true,
+    "evaluate": false,
+    "gpu": 0,
+    "init_lr": 3e-05,
+    "iters_per_epoch": 1000,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_epoch": 50,
+    "min_lr": 1e-05,
+    "num_workers": 4,
+    "output_dir": "output/videollama_stage2_finetune",
+    "rank": 0,
+    "resume_ckpt_path": null,
+    "seed": 42,
+    "task": "video_text_pretrain",
+    "train_splits": [
+        "train"
+    ],
+    "warmup_lr": 1e-06,
+    "warmup_steps": 1000,
+    "weight_decay": 0.05,
+    "world_size": 1
+}
+2024-06-18 00:57:26,408 [INFO] 
+======  Dataset Attributes  ======
+2024-06-18 00:57:26,408 [INFO] 
+======== avenue01 =======
+2024-06-18 00:57:26,408 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue01"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:57:26,408 [INFO] 
+======== avenue02 =======
+2024-06-18 00:57:26,409 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/avenue02"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:57:26,409 [INFO] 
+======== cc_sbu_align =======
+2024-06-18 00:57:26,410 [INFO] {
+    "build_info": {
+        "storage": "video_llama/datasets/cc_sbu_align/cc_sbu/cc_sbu_align"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:57:26,410 [INFO] 
+======== llava_instruct =======
+2024-06-18 00:57:26,410 [INFO] {
+    "build_info": {
+        "anno_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/chat.json",
+        "videos_dir": "video_llama/datasets/LLaVA-CC3M-Pretrain-595K/images"
+    },
+    "data_type": "images",
+    "model_type": "llama_v2",
+    "num_video_query_token": 32,
+    "text_processor": {
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "tokenizer_name": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "vis_processor": {
+        "train": {
+            "image_size": 224,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2024-06-18 00:57:26,410 [INFO] 
+======  Model Attributes  ======
+2024-06-18 00:57:26,411 [INFO] {
+    "arch": "video_llama",
+    "ckpt": "ckpt/Video-LLaMA-2-7B-Finetuned/VL_LLaMA_2_7B_Finetuned.pth",
+    "drop_path_rate": 0,
+    "end_sym": "###",
+    "equip_audio_branch": false,
+    "freeze_qformer": true,
+    "freeze_vit": true,
+    "frozen_audio_Qformer": true,
+    "frozen_llama_proj": false,
+    "frozen_video_Qformer": false,
+    "fusion_head_layers": 2,
+    "fusion_header_type": "seqTransf",
+    "image_size": 224,
+    "imagebind_ckpt_path": "ckpt/Video-LLaMA-2-7B-Finetuned/imagebind_huge.pth",
+    "llama_model": "ckpt/Video-LLaMA-2-7B-Finetuned/llama-2-7b-chat-hf",
+    "max_frame_pos": 32,
+    "max_txt_len": 320,
+    "model_type": "pretrain_vicuna",
+    "num_query_token": 32,
+    "prompt": "",
+    "prompt_path": "prompts/alignment_image.txt",
+    "prompt_template": "###Human: {} ###Assistant: ",
+    "use_grad_checkpoint": false,
+    "vit_precision": "fp16"
+}
+2024-06-18 00:57:26,411 [INFO] Building datasets...
+2024-06-18 00:57:26,414 [INFO] Building datasets...
+2024-06-18 00:57:26,415 [INFO] Building datasets...
+2024-06-18 00:57:26,425 [INFO] Building datasets...
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama.LlamaTokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+2024-06-18 00:57:43,652 [INFO] freeze vision encoder
+2024-06-18 00:57:46,447 [INFO] load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained_flant5xxl.pth
+2024-06-18 00:57:46,455 [INFO] freeze Qformer
+2024-06-18 00:57:46,455 [INFO] Loading Q-Former Done
+2024-06-18 00:57:46,455 [INFO] Loading LLAMA Tokenizer
+2024-06-18 00:57:46,621 [INFO] Loading LLAMA Model
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:05<00:05,  5.53s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  3.73s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.00s/it]
+2024-06-18 00:57:54,715 [INFO] Loading LLAMA Done
+2024-06-18 00:57:54,715 [INFO] Loading LLAMA proj
+2024-06-18 00:57:54,728 [INFO] LLAMA proj is not frozen
+2024-06-18 00:57:54,728 [INFO] Loading llama_proj Done
+2024-06-18 00:57:55,494 [INFO] video_Qformer is not frozen
+2024-06-18 00:57:58,583 [INFO] Start training
+2024-06-18 00:58:01,044 [INFO] dataset_ratios not specified, datasets will be concatenated (map-style datasets) or chained (webdataset.DataPipeline).
+2024-06-18 00:58:01,044 [INFO] Loaded 601464 records for train split from the dataset.
+2024-06-18 00:58:01,061 [INFO] number of trainable parameters: 22104064
+2024-06-18 00:58:01,062 [INFO] Start training epoch 0, 1000 iters per inner epoch.
+Traceback (most recent call last):
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 107, in <module>
+    main()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/train.py", line 103, in main
+    runner.train()
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 377, in train
+    train_stats = self.train_epoch(cur_epoch)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/runners/runner_base.py", line 437, in train_epoch
+    return self.task.train_epoch(
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 114, in train_epoch
+    return self._train_inner_loop(
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 219, in _train_inner_loop
+    loss = self.train_step(model=model, samples=samples)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/tasks/base_task.py", line 68, in train_step
+    loss = model(samples)["loss"]
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1523, in forward
+    else self._run_ddp_forward(*inputs, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1359, in _run_ddp_forward
+    return self.module(*inputs, **kwargs)  # type: ignore[index]
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/video_llama.py", line 529, in forward
+    outputs = self.llama_model(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 676, in forward
+    outputs = self.model(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 565, in forward
+    layer_outputs = decoder_layer(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 288, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/student.aau.dk/fd27ct/projects/VAD/Video-LLaMA/video_llama/models/modeling_llama.py", line 140, in forward
+    return self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 116, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 86.00 MiB. GPU 0 has a total capacity of 22.17 GiB of which 74.38 MiB is free. Including non-PyTorch memory, this process has 22.09 GiB memory in use. Of the allocated memory 21.37 GiB is allocated by PyTorch, and 170.57 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2024-06-18 00:58:15,302] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 2437013) of binary: /opt/conda/envs/conda_container_env/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/envs/conda_container_env/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/conda/envs/conda_container_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-06-18_00:58:15
+  host      : a512-l4-06.srv.aau.dk
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2437013)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+srun: error: a512-l4-06: task 0: Exited with exit code 1
