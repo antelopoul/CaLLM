@@ -1,5 +1,6 @@
 # CaLLM: Cascading Autoencoder and Large Language Model for Video Anomaly Detection
 
+## Introduction
 ## Prerequisites
 Create a conda environment with the following packages:
 ```
@@ -24,7 +25,6 @@ python cascaded.py \
 --gpu-id 0 
 ```
 
-## Introduction
 
 This project relies on the following GitHub repositories:
 
